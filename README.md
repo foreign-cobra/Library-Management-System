@@ -3,7 +3,7 @@
  > Replace anything between \<...\> with your project specifics and remove angle brackets. For example, you need to name your project and replace the header right below this line with that title (no angle brackets). 
 # Library Management System Project
  
-# Authors: Jorge Perez(https://github.com/foreign-cobra)
+# Authors: Jorge Perez(https://github.com/foreign-cobra), Colin Truong(https://github.com/colintruong), Alexander Chavez(https://github.com/AlexC111013), Matthew Budding(https://github.com/MatthewBudding)
 
 ## Project Description
 This LMS project is especially interesting to all four group members as it has a fairly straightforward design philosophy with enough complexity to test our knowledge of important C++ concepts, algorithms, and data structures. This project will use C++ as its main programming language, as well as common data structures in object-oriented programming such as linked lists, hashtables, 

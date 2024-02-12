@@ -59,7 +59,8 @@ This navigation diagram shows the entire map of navigation through the program a
 
 ### Screen Layouts
 > Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs and expected output, or any graphical user interface components if applicable (e.g. buttons, text boxes, etc). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
-> (https://github.com/cs100/final-project-mbudd003-achav239-ctruo045-jpere470/assets/117537500/8237bb3c-5d2f-4a55-9a39-dc4909a00834)
+
+> ![image](https://github.com/cs100/final-project-mbudd003-achav239-ctruo045-jpere470/assets/117537500/8237bb3c-5d2f-4a55-9a39-dc4909a00834)
 
 
 ## Class Diagram

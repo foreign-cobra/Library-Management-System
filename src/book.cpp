@@ -54,13 +54,6 @@ void Book::displayInfo(){
 void Book::alterBorrowedDate(int d, int m, int y){
     borrowedDate = Date(d,m,y);
 }
-int Book::computeHash(const std::string &stringWord) {
-    int hash = 0;
-    for (char c : stringWord) {
-        hash += c;
-    }
-    return hash;
-}
 bool Book::overdue() {
     // Get the current date
     Date currentDate = Date::getCurrentDate();

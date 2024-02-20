@@ -49,9 +49,7 @@ public:
     void displayInfo();
     bool getStatus();
     bool overdue();
-    void alterBorrowedDate(int d, int m, int y);
-private:
-    int computeHash(const string &stringWord);
+    void alterBorrowedDate(int d, int m, int y); //I made this for testing, we can get rid of it later if we want to
 };
 
 #endif

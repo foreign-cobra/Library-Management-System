@@ -65,7 +65,9 @@ First, we'll talk about searching for a book. The user can either enter the titl
 
 Next, traversing back to the main menu, we go to the user profile. From the user profile, you can check your account info, borrowed books, or book fines. Going to your account info will show you your current username and password and give you the option to change your username or password if you'd like. Doing so will automatically sign you out of the library management system and make you sign up with your changed credentials. The borrowed books page allows you to check what books you are currently borrowing, listed in alphabetical order. You may enter the number that corresponds with the book to visit that book page. Finally, the book fines page lists any fines you have from overdue books. It leads you to a page where you enter your payment information to pay off the fines.
 
-> ![image](https://github.com/cs100/final-project-mbudd003-achav239-ctruo045-jpere470/assets/117537500/8237bb3c-5d2f-4a55-9a39-dc4909a00834)
+> ![image](https://github.com/cs100/final-project-mbudd003-achav239-ctruo045-jpere470/assets/117537500/d8959f58-d13b-48c0-b908-0da38bd826f6)
+> ![image](https://github.com/cs100/final-project-mbudd003-achav239-ctruo045-jpere470/assets/117537500/fa2211d4-cc17-46bb-857c-23b9414f0d59)
+
 
 
 ## Class Diagram

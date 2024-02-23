@@ -51,14 +51,29 @@ While many of the LMS' features are already listed above, they are explained in 
  > Include a navigation diagram for your screens and the layout of each of those screens as desribed below. For all the layouts/diagrams, you can use any tool such as PowerPoint or a drawing program. (Specification requirement is adapted from [this template](https://redirect.cs.umbc.edu/~mgrass2/cmsc345/Template_UI.doc))
 
 ### Navigation Diagram
-> Draw a diagram illustrating how the user can navigate from one screen to another. Here is an [example](https://creately.com/diagram/example/ikfqudv82/user-navigation-diagram-classic?r=v). It can be useful to label each symbol that represents a screen so that you can reference the screens in the next section or the rest of the document if necessary. Give a brief description of what the diagram represents.
+
+This navigation diagram shows the entire map of navigation through the program and how we are able to get to a certain screen. Using this map, the reader can understand many of the features of the library system.
+
+> ![image](https://github.com/cs100/final-project-mbudd003-achav239-ctruo045-jpere470/assets/117537500/71e8a236-0bdf-41ed-b397-e9aae2bbee65)
+
 
 ### Screen Layouts
-> Include the layout of each of your screens. The layout should describe the screen’s major components such as menus and prompts for user inputs and expected output, or any graphical user interface components if applicable (e.g. buttons, text boxes, etc). Explain what is on the layout, and the purpose of each menu item, button, etc. If many screens share the same layout, start by describing the general layout and then list the screens that will be using that layout and the differences between each of them.
+
+Starting at the signup/login screen, the user is prompted to input a username and password to create an account. From there, the user is sent to the main menu, where the user has several actions to choose from. They can either look at their user profile, search for a book, or exit the program.
+
+First, we'll talk about searching for a book. The user can either enter the title of the book (if it's in the database) or add a new book to the database. Searching for a book that's in the database requires that it is exactly the same as the title of the book as it will be case-sensitive. Once the user finds their book, the book page will display. It will give the user the option to borrow the book if it is available. If the user is already borrowing the book, the option to return or read the book will be unlocked. If it's unavailable, the user cannot do any of the three actions. This all depends on the status of the book for the user.
+
+Next, traversing back to the main menu, we go to the user profile. From the user profile, you can check your account info, borrowed books, or book fines. Going to your account info will show you your current username and password and give you the option to change your username or password if you'd like. Doing so will automatically sign you out of the library management system and make you sign up with your changed credentials. The borrowed books page allows you to check what books you are currently borrowing, listed in alphabetical order. You may enter the number that corresponds with the book to visit that book page. Finally, the book fines page lists any fines you have from overdue books. It leads you to a page where you enter your payment information to pay off the fines.
+
+> ![image](https://github.com/cs100/final-project-mbudd003-achav239-ctruo045-jpere470/assets/117537500/d8959f58-d13b-48c0-b908-0da38bd826f6)
+> ![image](https://github.com/cs100/final-project-mbudd003-achav239-ctruo045-jpere470/assets/117537500/fa2211d4-cc17-46bb-857c-23b9414f0d59)
+
+
 
 ## Class Diagram
- > Include a **class diagram(s)** for your project and a **description** of the diagram(s). Your class diagram(s) should include all the main classes you plan for the project. This should be in sufficient detail that another group could pick up the project this point and successfully complete it. Use proper UML notation (as discussed in the course slides).
- 
+ > This UML Diagram covers the general format of our project, there will be 3 main classes: books, the library system, and the user. The book will store information regarding itself, specfically the author, its name, the id we store it by, and so on. The library will be the users way of accessing the books, so it will contain activites that allow the user to change the books status of whether it was borrowed or not, and to create and add new books to the system. The user will store the books that they have borrowed and be able to access them for information.
+ ![image](https://github.com/cs100/final-project-mbudd003-achav239-ctruo045-jpere470/assets/116530124/9d19cff3-feb9-4556-b8d1-a02b40fafba0)
+
  > ## Phase III
  > You will need to schedule a check-in for the second scrum meeting with the same reader you had your first scrum meeting with (using Calendly). Your entire team must be present. This meeting will occur on week 8 during lab time.
  

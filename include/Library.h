@@ -12,13 +12,13 @@ class Library
 {
 
 private:
-	list<string> *library;
+	list<Book> *library;
 	int size;
 
 public:
 	Library(int defaultSize);
 	~Library();
-	void insert(const string &bookTitle);
+	void insert(const string &bookTitle, const string &bookAuthor, const string &bookGenre, const string &bookSummary);
 	bool bookSearch(const string &bookTitle);
 	void returnBook(const string &bookTitle);
 	void borrowBook(const string &bookTitle);

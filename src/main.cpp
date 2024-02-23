@@ -11,7 +11,7 @@ using namespace std;
 
 
 int main(int /*argc*/, char ** /*argv*/) {
-    Library database(99);
+    Library database(11);
                                                         // First, we must create our database
     try {
     ifstream databaseFile;
@@ -19,14 +19,16 @@ int main(int /*argc*/, char ** /*argv*/) {
 
     if (databaseFile.is_open()) {
         string newBookTitle;
-        string newBookGenre;
         string newBookAuthor;
+        string newBookGenre;
         string newBookSummary;
+        string trashVariable;
 
-        
-        while(databaseFile) {
-            getline(databaseFile, newBookTitle);       //For now, we read in only the book title and insert it into the database
-            database.insert(newBookTitle);
+        while(getline(databaseFile, newBookTitle, '|') &&
+              getline(databaseFile, newBookAuthor, '|') &&
+              getline(databaseFile, newBookGenre, '|') &&
+              getline(databaseFile, newBookSummary)) {
+            database.insert(newBookTitle, newBookAuthor, newBookGenre, newBookSummary);
         }
         databaseFile.close();
     }
@@ -123,8 +125,7 @@ int main(int /*argc*/, char ** /*argv*/) {
                         bool bookFound = database.bookSearch(bookFind);
 
                         if (bookFound) {
-                            string bookFound = "Book has been found!\n";
-                            centerText(bookFound, 160);
+                            // TODO: Display Book Page and the appropriate options for borrowing
                         }
 
                         else {
@@ -132,7 +133,6 @@ int main(int /*argc*/, char ** /*argv*/) {
                             string errorBook = "No books found in the database, please try again!";
                             centerText(errorBook, 160);
                             cout << "\n\n" << termcolor::reset;
-
                         }
                         break;
                     }

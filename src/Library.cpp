@@ -1,4 +1,5 @@
 #include "../include/Library.h"
+#include "../include/Book.h"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -9,68 +10,62 @@ using namespace std;
 
 Library::Library(int defaultSize) {
     size = defaultSize;
-    library = new list<string>[size];
+    library = new list<Book>[size];
 }
 
 Library::~Library() {
     // TODO: Implement appropriate destructor for the Library
 }
 
-void Library::insert(const string& bookTitle) {
+void Library::insert(const string& bookTitle, const string &bookAuthor, const string &bookGenre, const string& bookSummary) {
     int possibleLocation = computeID(bookTitle);
-    
-    list<string>::iterator traverser; //Traverser that goes through the chained linked list at a specified index of the HashTable
+
+    list<Book>::iterator traverser; //Traverser that goes through the chained linked list at a specified index of the HashTable
 
     traverser = library[possibleLocation].begin(); // Begins at the beginning of the chained linked list
 
     while (traverser != library[possibleLocation].end()) {
-        if (*traverser == bookTitle) {
+        if (traverser->getBookTitle() == bookTitle) {
             //Book is already in the database!
+            cout << "Book is already in the database!" << endl;
             return;
         }
 
         traverser++;
     }
 
-    library[possibleLocation].push_back(bookTitle); //Insert new bookTitle into the database
+    Book newBook(bookTitle, bookGenre, bookAuthor, bookSummary);
+
+    library[possibleLocation].push_back(newBook); //Insert new bookTitle into the database
 }
 
 int Library::computeID(const string &bookTitle) {
-    int randomInt = 24; // Initialize our random integer to 24. 
-
-    for (unsigned i = 0; i < bookTitle.size(); ++i) {
-        int charConverter = bookTitle.at(i) - '0'; // By subtracting the character by an int, it converts it into its special integer. 
-		randomInt = randomInt + charConverter; // Each character will have its own respective int. We will add them up so that each string can have differing numbers. 
+    int hash = 0;
+    for (char c : bookTitle) {
+        hash += static_cast<int>(c);
     }
-    
-    return ((randomInt * 2) + size - 24) % size; // A strange but deterministic algorithm for computing the hash ID. 
+    return hash % size;
 }
+
 
 bool Library::bookSearch(const string &bookTitle) {
     int possibleLocation = computeID(bookTitle);
 
-    list<string>::iterator traverser;
+    list<Book>::iterator traverser;
 
     traverser = library[possibleLocation].begin(); // Begins at the beginning of the chained linked list
 
     while (traverser != library[possibleLocation].end()) {
-        if (*traverser == bookTitle) {
-            //Book is already in the database!
-            return true;
-        }
 
-        traverser++;
+    if (traverser->getBookTitle() == bookTitle) {
+        traverser->displayInfo();
+        return true;
     }
-
-    return false;
+    traverser++;
 }
 
-void Library::outputDatabase() {
-    for (int i = 0; i < size; ++i) {
-        for (const std::string& book : library[i]) {
-            std::cout << "Book: " << book << std::endl;
-        }
-    }
+
+    return false;
 }
 
 

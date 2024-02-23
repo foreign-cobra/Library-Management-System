@@ -6,4 +6,5 @@ add_executable(runProgram
     src/main.cpp
     src/helper.cpp
     src/Library.cpp
+    src/Book.cpp
 )

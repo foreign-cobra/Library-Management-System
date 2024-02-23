@@ -15,6 +15,8 @@ add_executable(runProgram
 
 add_executable(runAllTests
   test/test.cpp
+  src/Library.cpp
+  src/Book.cpp
 )
 
 target_link_libraries(runProgram gtest gtest_main)

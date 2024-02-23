@@ -25,7 +25,7 @@ public:
 	void createNewBook(const string &bookTitle, const string &bookAuthor, const string &bookGenre, const string &bookSummary);
 	void outputDatabase();
 
-	private: 
+	//private: 
 	int computeID(const string &stringWord);
 };
 

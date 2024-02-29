@@ -1,10 +1,12 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+#include <cstdlib>
 #include "../header/helper.h"
 #include "../header/termcolor.hpp"
 #include "../header/library.h"
 #include "../header/book.h"
+#include "../header/userDatabase.h"
 
 
 using namespace std;
@@ -12,6 +14,7 @@ using namespace std;
 
 int main(int /*argc*/, char ** /*argv*/) {
     Library database(11);
+    userDatabase accounts(1);
                                                         // First, we must create our database
     try {
     ifstream databaseFile;

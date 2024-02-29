@@ -37,6 +37,10 @@ string Book::getBookSummary(){
 bool Book::getStatus(){
     return bookStatus;
 }
+
+void Book::setStatus(bool status){
+    bookStatus = status;
+}
 Date Book::getBorrowedDate(){
     return borrowedDate;
 }

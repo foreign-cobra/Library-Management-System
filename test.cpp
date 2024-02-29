@@ -1,6 +1,10 @@
 #include <gtest/gtest.h>
+#include "header/settleFines.h"
 #include "header/book.h"
+#include "header/user.h"
 #include "header/library.h"
+
+// User class unit tests
 
 TEST(BookTest, Constructor) {
     Book book("Title", "Genre", "Author", "Summary");
@@ -29,6 +33,45 @@ TEST(BookTest, Overdue) {
     book = Book("Title", "Genre", "Author", "Summary");
     book.alterBorrowedDate(1,1,2022);
     EXPECT_TRUE(book.overdue());
+}
+
+
+TEST(UserTest, constructor1) {
+    User* newUser = new User();
+    EXPECT_EQ(newUser->getUsername(), "");
+    EXPECT_EQ(newUser->getPassword(), "");
+}
+
+TEST(UserTest, constructor2) {
+    User* newUser = new User("colin", "dog");
+    EXPECT_EQ(newUser->getUsername(), "colin");
+    EXPECT_EQ(newUser->getPassword(), "dog");
+}
+
+TEST(UserTest, changeUsername) {
+    User* newUser = new User("colin", "dog");
+    newUser->setUsername("blueberry123");
+    EXPECT_EQ(newUser->getUsername(), "blueberry123");
+    EXPECT_EQ(newUser->getPassword(), "dog");
+}
+
+TEST(UserTest, changePassword) {
+    User* newUser = new User("colin", "dog");
+    newUser->setPassword("hahaha499");
+    EXPECT_EQ(newUser->getUsername(), "colin");
+    EXPECT_EQ(newUser->getPassword(), "hahaha499");
+}
+
+TEST(UserTest, displayBooks) {
+    User* newUser = new User("colin", "dog");
+    Book* book1 = new Book("a", "b", "c", "d");
+    Book* book2 = new Book ("e", "f", "g", "h");
+    newUser->borrowBook(book1);
+    newUser->borrowBook(book2);
+    testing::internal::CaptureStdout();
+    newUser->displayBooksOwned();
+    string output = testing::internal::GetCapturedStdout();
+    ASSERT_EQ(output, "1. a\n\n2. e\n\n");
 }
 
 // Insert and Search Tests
@@ -80,7 +123,41 @@ TEST(LibraryIDTest, testGinormous) {
 }
 
 
-int main(int argc, char** argv) {
-    testing::InitGoogleTest(&argc, argv);
+TEST(SettleFinesTest, InvalidCreditCardNum) {
+    PaymentProcessor processor;
+    EXPECT_FALSE(processor.isValidCreditCardNum("1234"));
+    EXPECT_FALSE(processor.isValidCreditCardNum("abcdefghijk"));
+}
+
+TEST(SettleFinesTest, ValidExpirationDate) {
+    PaymentProcessor processor;
+    EXPECT_TRUE(processor.isValidExpirationDate("12/34"));
+}
+
+TEST(SettleFinesTest, ValidCreditCardNum) {
+    PaymentProcessor processor;
+    EXPECT_TRUE(processor.isValidCreditCardNum("1234567890123456"));
+}
+   
+TEST(SettleFinesTest, InvalidExpirationDate) {
+    PaymentProcessor processor;
+    EXPECT_FALSE(processor.isValidExpirationDate("123/45"));
+    EXPECT_FALSE(processor.isValidExpirationDate("ab/cd"));
+}
+
+TEST(SettleFinesTest, ValidCVC) {
+    PaymentProcessor processor;
+    EXPECT_TRUE(processor.isValidCVC("123"));
+}
+
+TEST(SettleFinesTest, InvalidCVC) {
+    PaymentProcessor processor;
+    EXPECT_FALSE(processor.isValidCVC("12"));
+    EXPECT_FALSE(processor.isValidCVC("abcd"));
+}
+
+// The main function to run the tests
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }

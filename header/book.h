@@ -48,6 +48,7 @@ public:
     Date getBorrowedDate();
     void displayInfo();
     bool getStatus();
+    void setStatus(bool status);
     bool overdue();
     void alterBorrowedDate(int d, int m, int y); //I made this for testing, we can get rid of it later if we want to
 };

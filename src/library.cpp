@@ -15,6 +15,7 @@ Library::Library(int defaultSize) {
 
 Library::~Library() {
     // TODO: Implement appropriate destructor for the Library
+    delete[] library;
 }
 
 void Library::insert(const string& bookTitle, const string &bookAuthor, const string &bookGenre, const string& bookSummary) {
@@ -47,8 +48,7 @@ int Library::computeID(const string &bookTitle) {
     return hash % size;
 }
 
-
-bool Library::bookSearch(const string &bookTitle) {
+Book* Library::bookSearch(const string &bookTitle) {
     int possibleLocation = computeID(bookTitle);
 
     list<Book>::iterator traverser;
@@ -58,12 +58,10 @@ bool Library::bookSearch(const string &bookTitle) {
     while (traverser != library[possibleLocation].end()) {
 
     if (traverser->getBookTitle() == bookTitle) {
-        traverser->displayInfo();
-        return true;
+        Book* newBook = &(*traverser);   // Assign the place that the traverser pointer is pointing at to the newBook pointer. 
+        return newBook;                 // Return newBook if pointer has been found. 
     }
     traverser++;
 }
-
-
-    return false;
+    return nullptr;
 }

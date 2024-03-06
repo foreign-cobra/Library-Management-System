@@ -2,6 +2,7 @@
 #include "header/book.h"
 #include "header/user.h"
 #include "header/library.h"
+#include "header/userDatabase.h"
 
 // User class unit tests
 
@@ -120,6 +121,35 @@ TEST(LibraryIDTest, testGinormous) {
 
     EXPECT_EQ(database.computeID("EVENBIGGER"), 734);
 }
+
+TEST(UserDatabaseTest, testAddUser) {
+    userDatabase* users = new userDatabase();
+    users->addUser("colin", "test3123");
+    users->addUser("crunchy", "water");
+    users->addUser("banana", "monkey");
+    ASSERT_EQ(users->getSize(), 3);
+}
+
+TEST(UserDatabaseTest, testDisplayAcc) {
+    userDatabase* users = new userDatabase();
+    users->addUser("colin", "test3123");
+    users->addUser("crunchy", "water");
+    users->addUser("banana", "monkey");
+    testing::internal::CaptureStdout();
+    users->displayAllUsers();
+    string output = testing::internal::GetCapturedStdout();
+    ASSERT_EQ(output, "1. colin\n\n2. crunchy\n\n3. banana\n\n");
+}
+
+// TEST(UserDatabaseTest, testSearch) {
+//     userDatabase users("");
+//     users.addUser("colin", "test3123");
+//     users.addUser("crunchy", "water");
+//     users.addUser("banana", "monkey");
+//     User newUser = users.searchUser(crunchy);
+//     ASSERT_EQ(newUser.getUsername)
+
+// }
 
 
 int main(int argc, char** argv) {

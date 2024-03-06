@@ -10,15 +10,27 @@ using namespace std;
 
 class userDatabase {
     public:
-        userDatabase(int size);
+        // userDatabase(const string& fileName);
+        // ~userDatabase();
+        // void addUser(const string& username, const string& password);
+        // User* searchUser(const string& username);
+        // bool isAdmin(const string& username, const string& password);
+        // void displayAllUsers() const;
+        // list<User>* createDatabase(const string& file);
+        // void createAccount();
+        // void signIn();
+        userDatabase();
         ~userDatabase();
+        int getSize() const;
+        list<User*> getUserList() const;
         void addUser(const string& username, const string& password);
-        bool searchUser(const string& username);
-        // void returnUser(const string& username);
+        // User* searchUser(const string& username, const string& password);
         bool isAdmin(const string& username, const string& password);
+        void displayAllUsers() const;
+        void createAccount();
 
     private:
-        list<User> *listOfUsers;
+        list<User*> listOfUsers;
         int size;
 };
 

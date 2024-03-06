@@ -9,11 +9,10 @@
 
 using namespace std;
 
+int main() {
+    Library database(11);                               // First, we must create our database
+    userDatabase* userList = new userDatabase();                            // Then, we create our user account list
 
-int main(int /*argc*/, char ** /*argv*/) {
-    Library database(11); // First, we must create our database
-    userDatabase accounts("accounts.txt");
-    
     try {
     ifstream databaseFile;
     databaseFile.open("database.txt");                  // We must first open our database file
@@ -36,7 +35,7 @@ int main(int /*argc*/, char ** /*argv*/) {
 
     else {
         databaseFile.close();
-        throw runtime_error("ERROR: Couldn't open file :(");        //Run time error in case file does not open
+        throw runtime_error("ERROR: Couldn't open database file :(");        //Run time error in case file does not open
     }
     }
 
@@ -44,14 +43,34 @@ int main(int /*argc*/, char ** /*argv*/) {
         cout << error.what() << endl;
     }
 
-    // Then, the actual program must begin
+    try {
+        ifstream accountFile;
+        accountFile.open("accounts.txt");
+
+        if (accountFile.is_open()) {
+            string userName;
+            string passWord;
+            while (getline(accountFile, userName, ',') &&
+                   getline(accountFile, passWord)) {
+                    userList->addUser(userName, passWord);
+            }
+        }
+        else {
+            accountFile.close();
+            throw runtime_error("ERROR: Couldn't open database file :(");
+        }
+    }
+
+    catch (const exception& error) {
+        cout << error.what() << endl;
+    }
 
     int warningMessage = 0;
     char userInput;
 
     bool userContinue = true;
 
-    accounts.createAccount(); //This createAccount is supposed to return a pointer to the account that was just created. 
+    userList->createAccount();
 
     do {
         outputMenu(warningMessage);
@@ -163,7 +182,7 @@ int main(int /*argc*/, char ** /*argv*/) {
             }
             case '4':
             {
-                accounts.displayAllUsers();
+                userList->displayAllUsers();
                 warningMessage = 0;
                 break;
             }

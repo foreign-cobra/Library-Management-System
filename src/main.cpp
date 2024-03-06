@@ -5,14 +5,15 @@
 #include "../header/termcolor.hpp"
 #include "../header/library.h"
 #include "../header/book.h"
-
+#include "../header/userDatabase.h"
 
 using namespace std;
 
 
 int main(int /*argc*/, char ** /*argv*/) {
-    Library database(11);
-                                                        // First, we must create our database
+    Library database(11); // First, we must create our database
+    userDatabase accounts("accounts.txt");
+    
     try {
     ifstream databaseFile;
     databaseFile.open("database.txt");                  // We must first open our database file
@@ -50,7 +51,7 @@ int main(int /*argc*/, char ** /*argv*/) {
 
     bool userContinue = true;
 
-    createAccount(); //This createAccount is supposed to return a pointer to the account that was just created. 
+    accounts.createAccount(); //This createAccount is supposed to return a pointer to the account that was just created. 
 
     do {
         outputMenu(warningMessage);
@@ -162,6 +163,7 @@ int main(int /*argc*/, char ** /*argv*/) {
             }
             case '4':
             {
+                accounts.displayAllUsers();
                 warningMessage = 0;
                 break;
             }

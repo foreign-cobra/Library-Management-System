@@ -23,6 +23,7 @@ add_executable(runProgram
   src/user.cpp
   src/settleFines.cpp
   src/userFines.cpp
+  src/userDatabase.cpp
 )
 
 target_link_libraries(runAllTests gmock gtest gtest_main)

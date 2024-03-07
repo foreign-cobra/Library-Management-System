@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <string>
 #include "../header/helper.h"
+#include "../header/user.h"
 #include "../header/termcolor.hpp"
 
 using namespace std;
@@ -224,25 +225,35 @@ void simpleMenu() {
     cout << "\n\n\n";
 }
 
-void createAccount() {
+User* loginLayout() {
     int terminalWidth = 160;
-    string userName;
-    string passWord;
+    string username;
+    string password;
 
     simpleMenu();
     cout << termcolor::yellow;
     string prompt1 = "--- Create An Account ---";
     string prompt2 = "Please enter a username: ";
     string prompt3 = "Please enter a password: ";
+    string prompt4 = "Both your Username and Password must be at least 5 characters!";
 
+    do {
+    centerText(prompt4, terminalWidth);
+    cout << "\n\n\n";
     centerText(prompt1, terminalWidth);
     cout << "\n\n\n";
     centerText(prompt2, terminalWidth);
-    getline(cin, userName);
+    cin.ignore();
+    getline(cin, username);
     cout << "\n\n";
     centerText(prompt3, terminalWidth);
-    getline(cin, passWord);
+    getline(cin, password);
 
-    return;
+    cout  << "\n\n";
 
+    } while((username.size() < 5) || (password.size() < 5)); 
+
+    User* newUser = new User(username, password);
+
+    return newUser;
 }

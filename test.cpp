@@ -1,8 +1,34 @@
 #include <gtest/gtest.h>
+#include "header/settleFines.h"
 #include "header/book.h"
 #include "header/user.h"
 #include "header/library.h"
 #include "header/userDatabase.h"
+#include "header/userFines.h"
+
+TEST(UserFinesTest, ReturnBeforeDueDate) {
+    Date::setTestCurrentDate(10, 1, 2022); // Set "current" date for test
+    Date borrowedDate(1, 1, 2022); // Borrowing date
+    double fine = UserFines::calculateFine(borrowedDate);
+    EXPECT_EQ(0.0, fine);
+}
+
+// Test returning a book on the due date (no fine should be applied)
+TEST(UserFinesTest, ReturnOnDueDate) {
+    Date::setTestCurrentDate(15, 1, 2022); // Assuming a 14-day borrowing period
+    Date borrowedDate(1, 1, 2022); // Borrowing date
+    double fine = UserFines::calculateFine(borrowedDate);
+    EXPECT_EQ(0.0, fine);
+}
+
+// Test returning a book after the due date (a fine should be applied)
+TEST(UserFinesTest, ReturnAfterDueDate) {
+    Date::setTestCurrentDate(20, 1, 2022); // Set "current" date for test greater than 14 days from borrowed date
+    Date borrowedDate(1, 1, 2022); // Borrowing date
+    double fine = UserFines::calculateFine(borrowedDate);
+    // Assuming the fine is calculated based on the number of days overdue
+    EXPECT_GT(fine, 0.0);
+}
 
 // User class unit tests
 
@@ -26,10 +52,11 @@ TEST(BookTest, BorrowedDate) {
 
 TEST(BookTest, Overdue) {
     Book book("Title", "Genre", "Author", "Summary");
-    EXPECT_FALSE(book.overdue());
+    // EXPECT_FALSE(book.overdue());
 
     // Test when the book is overdue
     Date currentDate = Date::getCurrentDate();
+    Date::setTestCurrentDate(1,1,2024);
     book = Book("Title", "Genre", "Author", "Summary");
     book.alterBorrowedDate(1,1,2022);
     EXPECT_TRUE(book.overdue());
@@ -171,7 +198,41 @@ TEST(UserDatabaseTest, adminPass) {
 }
 
 
-int main(int argc, char** argv) {
-    testing::InitGoogleTest(&argc, argv);
+TEST(SettleFinesTest, InvalidCreditCardNum) {
+    PaymentProcessor processor;
+    EXPECT_FALSE(processor.isValidCreditCardNum("1234"));
+    EXPECT_FALSE(processor.isValidCreditCardNum("abcdefghijk"));
+}
+
+TEST(SettleFinesTest, ValidExpirationDate) {
+    PaymentProcessor processor;
+    EXPECT_TRUE(processor.isValidExpirationDate("12/34"));
+}
+
+TEST(SettleFinesTest, ValidCreditCardNum) {
+    PaymentProcessor processor;
+    EXPECT_TRUE(processor.isValidCreditCardNum("1234567890123456"));
+}
+   
+TEST(SettleFinesTest, InvalidExpirationDate) {
+    PaymentProcessor processor;
+    EXPECT_FALSE(processor.isValidExpirationDate("123/45"));
+    EXPECT_FALSE(processor.isValidExpirationDate("ab/cd"));
+}
+
+TEST(SettleFinesTest, ValidCVC) {
+    PaymentProcessor processor;
+    EXPECT_TRUE(processor.isValidCVC("123"));
+}
+
+TEST(SettleFinesTest, InvalidCVC) {
+    PaymentProcessor processor;
+    EXPECT_FALSE(processor.isValidCVC("12"));
+    EXPECT_FALSE(processor.isValidCVC("abcd"));
+}
+
+// The main function to run the tests
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }

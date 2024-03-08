@@ -40,3 +40,4 @@ void User::displayBooksOwned() const { // goes through each book and lists its t
         cout << count << ". " << i->getBookTitle() << endl << endl;
     }
 }
+}

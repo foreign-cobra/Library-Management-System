@@ -67,6 +67,15 @@ bool Book::getStatus(){
     return bookStatus;
 }
 
+string Book::getCurrentBorrower() {
+    return this->bookOwner;
+}
+
+
+void Book::setCurrentBorrower(const string& bookOwner) {
+    this->bookOwner = bookOwner;
+}
+
 void Book::setStatus(bool status){
     bookStatus = status;
 }

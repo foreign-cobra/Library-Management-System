@@ -48,8 +48,8 @@ User* userDatabase::searchUser(const string& username, const string& password) {
     return nullptr;
 }
 
-bool userDatabase::isAdmin(const string& username, const string& password) { // used to check if the user logs in with admin account info and allows them extra features
-    if (username == "Admin1" && password == "cs100") {
+bool userDatabase::isAdmin(User*& newUser) { // used to check if the user logs in with admin account info and allows them extra features
+    if (newUser->getUsername() == "Admin1" && newUser->getPassword() == "cs100") {
         return true;
     } else {
         return false;

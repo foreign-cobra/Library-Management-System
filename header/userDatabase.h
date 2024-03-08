@@ -16,7 +16,7 @@ class userDatabase {
         list<User*> getUserList() const;
         void addUser(User*& newUser);
         User* searchUser(const string& username, const string& password);
-        bool isAdmin(const string& username, const string& password);
+        bool isAdmin(User*& newUser);
         void displayAllUsers() const;
         User* createAccount();
         User* signIn();

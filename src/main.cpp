@@ -274,7 +274,7 @@ int main() {
             }
             case '4':
             {
-                if (userList->isAdmin(newUser->getUsername(), newUser->getPassword())) {
+                if (userList->isAdmin(newUser)) {
                     userList->displayAllUsers();
                 }
 

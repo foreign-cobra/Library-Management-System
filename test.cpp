@@ -155,6 +155,19 @@ TEST(UserDatabaseTest, testSearch) {
     users->addUser(user1);
     users->addUser(user2);
     users->addUser(user3);
+    ASSERT_EQ(users->searchUser("crunchy", "water"), user2);
+}
+
+TEST(UserDatabaseTest, adminFail) {
+    userDatabase* users = new userDatabase();
+    User* user1 = new User("Admin2", "hackingsystem");
+    ASSERT_FALSE(users->isAdmin(user1));
+}
+
+TEST(UserDatabaseTest, adminPass) {
+    userDatabase* users = new userDatabase();
+    User* user1 = new User("Admin1", "cs100");
+    ASSERT_TRUE(users->isAdmin(user1));
 }
 
 

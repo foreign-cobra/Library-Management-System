@@ -243,6 +243,7 @@ User* loginLayout() {
     centerText(prompt1, terminalWidth);
     cout << "\n\n\n";
     centerText(prompt2, terminalWidth);
+    cin.ignore();
     getline(cin, username);
     cout << "\n\n";
     centerText(prompt3, terminalWidth);

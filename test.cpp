@@ -124,32 +124,38 @@ TEST(LibraryIDTest, testGinormous) {
 
 TEST(UserDatabaseTest, testAddUser) {
     userDatabase* users = new userDatabase();
-    users->addUser("colin", "test3123");
-    users->addUser("crunchy", "water");
-    users->addUser("banana", "monkey");
+    User* user1 = new User("colin", "test3123");
+    User* user2 = new User("crunchy", "water");
+    User* user3 = new User("banana", "monkey");
+    users->addUser(user1);
+    users->addUser(user2);
+    users->addUser(user3);
     ASSERT_EQ(users->getSize(), 3);
 }
 
 TEST(UserDatabaseTest, testDisplayAcc) {
     userDatabase* users = new userDatabase();
-    users->addUser("colin", "test3123");
-    users->addUser("crunchy", "water");
-    users->addUser("banana", "monkey");
+    User* user1 = new User("colin", "test3123");
+    User* user2 = new User("crunchy", "water");
+    User* user3 = new User("banana", "monkey");
+    users->addUser(user1);
+    users->addUser(user2);
+    users->addUser(user3);
     testing::internal::CaptureStdout();
     users->displayAllUsers();
     string output = testing::internal::GetCapturedStdout();
-    ASSERT_EQ(output, "1. colin\n\n2. crunchy\n\n3. banana\n\n");
+    ASSERT_EQ(output, "1. Username: colin\n\n2. Username: crunchy\n\n3. Username: banana\n\n");
 }
 
-// TEST(UserDatabaseTest, testSearch) {
-//     userDatabase users("");
-//     users.addUser("colin", "test3123");
-//     users.addUser("crunchy", "water");
-//     users.addUser("banana", "monkey");
-//     User newUser = users.searchUser(crunchy);
-//     ASSERT_EQ(newUser.getUsername)
-
-// }
+TEST(UserDatabaseTest, testSearch) {
+    userDatabase* users = new userDatabase();
+    User* user1 = new User("colin", "test3123");
+    User* user2 = new User("crunchy", "water");
+    User* user3 = new User("banana", "monkey");
+    users->addUser(user1);
+    users->addUser(user2);
+    users->addUser(user3);
+}
 
 
 int main(int argc, char** argv) {

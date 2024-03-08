@@ -3,6 +3,7 @@
 #include "header/book.h"
 #include "header/user.h"
 #include "header/library.h"
+#include "header/userDatabase.h"
 #include "header/userFines.h"
 
 TEST(UserFinesTest, ReturnBeforeDueDate) {
@@ -146,6 +147,54 @@ TEST(LibraryIDTest, testGinormous) {
     Library database(1000);
 
     EXPECT_EQ(database.computeID("EVENBIGGER"), 734);
+}
+
+TEST(UserDatabaseTest, testAddUser) {
+    userDatabase* users = new userDatabase();
+    User* user1 = new User("colin", "test3123");
+    User* user2 = new User("crunchy", "water");
+    User* user3 = new User("banana", "monkey");
+    users->addUser(user1);
+    users->addUser(user2);
+    users->addUser(user3);
+    ASSERT_EQ(users->getSize(), 3);
+}
+
+TEST(UserDatabaseTest, testDisplayAcc) {
+    userDatabase* users = new userDatabase();
+    User* user1 = new User("colin", "test3123");
+    User* user2 = new User("crunchy", "water");
+    User* user3 = new User("banana", "monkey");
+    users->addUser(user1);
+    users->addUser(user2);
+    users->addUser(user3);
+    testing::internal::CaptureStdout();
+    users->displayAllUsers();
+    string output = testing::internal::GetCapturedStdout();
+    ASSERT_EQ(output, "1. Username: colin\n\n2. Username: crunchy\n\n3. Username: banana\n\n");
+}
+
+TEST(UserDatabaseTest, testSearch) {
+    userDatabase* users = new userDatabase();
+    User* user1 = new User("colin", "test3123");
+    User* user2 = new User("crunchy", "water");
+    User* user3 = new User("banana", "monkey");
+    users->addUser(user1);
+    users->addUser(user2);
+    users->addUser(user3);
+    ASSERT_EQ(users->searchUser("crunchy", "water"), user2);
+}
+
+TEST(UserDatabaseTest, adminFail) {
+    userDatabase* users = new userDatabase();
+    User* user1 = new User("Admin2", "hackingsystem");
+    ASSERT_FALSE(users->isAdmin(user1));
+}
+
+TEST(UserDatabaseTest, adminPass) {
+    userDatabase* users = new userDatabase();
+    User* user1 = new User("Admin1", "cs100");
+    ASSERT_TRUE(users->isAdmin(user1));
 }
 
 

@@ -240,9 +240,18 @@ int main() {
                                 }
                                 case '2':
                                 {
-                                    // Return book function needed                                  
-                                    bookFound->setStatus(true);
-                                    bookFound->setCurrentBorrower("");
+                                    // Return book function needed     
+                                    if (bookFound->getCurrentBorrower() != newUser->getUsername()) {
+                                        cout << termcolor::red;
+                                        cout << "\n\n";
+                                        string returnError = "Sorry, you can't return a book that doesn't belong to you!";
+                                        centerText(returnError, 160);
+                                        cout << "\n\n";
+                                    }       
+                                    else {                      
+                                        bookFound->setStatus(true);
+                                        bookFound->setCurrentBorrower("");
+                                    }
                                     //newUser->returnBook(bookFound); return book needs to be a function withini the user class. 
                                     break;
                                 }

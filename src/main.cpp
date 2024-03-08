@@ -126,7 +126,6 @@ int main(int /*argc*/, char ** /*argv*/) {
                         cout << "\n\n";
 
                         bool bookFound = database.bookSearch(bookFind);
-
                         if (bookFound) {
                             // TODO: Display Book Page and the appropriate options for borrowing
                         }

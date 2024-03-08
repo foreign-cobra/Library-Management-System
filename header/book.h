@@ -35,6 +35,7 @@ private:
     string bookGenre;
     string bookAuthor;
     string bookSummary;
+    string bookOwner;
     Date borrowedDate;
     bool bookStatus; //true == open, false == taken
 
@@ -51,6 +52,8 @@ public:
     void setStatus(bool status);
     bool overdue();
     void alterBorrowedDate(int d, int m, int y); //I made this for testing, we can get rid of it later if we want to
+    void setCurrentBorrower(const string& bookOwner);
+    string getCurrentBorrower();
 };
 
 #endif

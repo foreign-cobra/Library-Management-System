@@ -222,13 +222,28 @@ int main() {
 
                             switch(userInput) {
                                 case '1':
-                                {
+                                {   
+                                    if (bookFound->getStatus()) {
                                     newUser->borrowBook(bookFound);
+                                    bookFound->setCurrentBorrower(newUser->getUsername());
+                                    bookFound->setStatus(false);
                                     break;
+                                    }
+                                    else {
+                                        cout << termcolor::red;
+                                        string bookTaken = "Sorry, this book has been checked out by another user!";
+                                        cout << "\n\n";
+                                        centerText(bookTaken, 160);
+                                        cout << "\n\n";
+                                        break;
+                                    }
                                 }
                                 case '2':
                                 {
-                                    // Return book function needed
+                                    // Return book function needed                                  
+                                    bookFound->setStatus(true);
+                                    bookFound->setCurrentBorrower("");
+                                    //newUser->returnBook(bookFound); return book needs to be a function withini the user class. 
                                     break;
                                 }
                                 default:
@@ -292,6 +307,52 @@ int main() {
             case '5':
             {   
                 //signInOrCreate();
+                do {
+                cout << termcolor::yellow;
+                centerText(beginPrompt, 160);
+                cout << "\n\n";
+                centerText(createaccount, 160);
+                cout << "\n\n";
+                centerText(signin, 160);
+                cout << "\n\n";
+                centerText(exitProgram, 160);
+                cout << "\n\n";
+                cout << termcolor::white;
+
+                cin >> userInput;
+                switch(userInput) {
+                case '1':
+                {
+
+                newUser = userList->createAccount();
+                userContinue = false;
+                break;
+
+                }
+                case '2':
+                {
+                    // User wants to log into an existing account
+                newUser = userList->signIn();
+                if (newUser != nullptr) {
+                userContinue = false;
+                break;
+                }
+
+                cout << termcolor::red;
+                string SignInError = "ERROR: Either Username/Password was entered incorrectly!";
+                centerText(SignInError, 160);
+                cout << "\n\n\n";
+                break;
+            }
+            default:
+            {
+            // User wants to exit the program
+            return 0;
+        }
+    }
+    } while (userContinue);
+
+                userContinue = true;
                 warningMessage = 0;
                 break;
             }

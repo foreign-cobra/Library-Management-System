@@ -2,6 +2,35 @@
 
 using namespace std;
 
+Date Date::testCurrentDate = Date(); // Initialize with default constructor
+bool Date::useTestDate = false; // Initialize as false
+
+// Static methods and operator- implementation
+Date Date::getCurrentDate() {
+    if (useTestDate) {
+        return testCurrentDate;
+    } else {
+        time_t now = time(0);
+        tm *ltm = localtime(&now);
+        return Date(ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
+    }
+}
+
+void Date::setTestCurrentDate(int d, int m, int y) {
+    testCurrentDate = Date(d, m, y);
+    useTestDate = true;
+}
+
+void Date::resetToCurrentDate() {
+    useTestDate = false;
+}
+
+int Date::operator-(const Date& other) const {
+    int thisDays = year * 365 + month * 30 + day;
+    int otherDays = other.year * 365 + other.month * 30 + other.day;
+    return abs(thisDays - otherDays);
+}
+
 Book::Book(){
     bookTitle = "";
     bookGenre = "";
@@ -36,6 +65,10 @@ string Book::getBookSummary(){
 
 bool Book::getStatus(){
     return bookStatus;
+}
+
+void Book::setStatus(bool status){
+    bookStatus = status;
 }
 Date Book::getBorrowedDate(){
     return borrowedDate;

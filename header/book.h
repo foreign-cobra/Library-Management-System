@@ -6,6 +6,7 @@
 #include <iostream>
 #include <ctime>
 #include <string>
+#include <cstdlib>
 
 using namespace std;
 
@@ -14,22 +15,21 @@ struct Date {
     int month;
     int year;
 
-    // Constructor to initialize the date
-    Date() : day(0), month(0), year(0) {}
-    Date(int d, int m, int y) : day(d), month(m), year(y) {}
-    void displayDate(){
-        cout << day << "/" << month << "/" << year << endl;
-    }
-    // Function to get current date
-    static Date getCurrentDate() {
-        time_t now = time(0);
-        tm *ltm = localtime(&now);
-        return Date(ltm->tm_mday, ltm->tm_mon + 1, ltm->tm_year + 1900);
-    }
+    static Date testCurrentDate; // Static member declaration
+    static bool useTestDate; // Static flag declaration
+
+    Date() : day(0), month(0), year(0) {} // Constructor
+    Date(int d, int m, int y) : day(d), month(m), year(y) {} // Constructor with parameters
+
+    static Date getCurrentDate();
+    static void setTestCurrentDate(int d, int m, int y);
+    static void resetToCurrentDate();
+    int operator-(const Date& other) const; // Difference operator
 };
+
+
 class Book
 {
-
 private:
     string bookTitle;
     string bookGenre;
@@ -48,6 +48,7 @@ public:
     Date getBorrowedDate();
     void displayInfo();
     bool getStatus();
+    void setStatus(bool status);
     bool overdue();
     void alterBorrowedDate(int d, int m, int y); //I made this for testing, we can get rid of it later if we want to
 };

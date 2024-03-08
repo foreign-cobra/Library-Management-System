@@ -8,9 +8,13 @@ add_subdirectory(googletest)
 
 add_executable(runAllTests
   test.cpp
+  src/settleFines.cpp
+  src/userFines.cpp
   src/book.cpp
   src/library.cpp
   src/user.cpp
+  src/userDatabase.cpp
+  src/helper.cpp
 )
 
 add_executable(runProgram
@@ -19,6 +23,9 @@ add_executable(runProgram
   src/library.cpp
   src/main.cpp
   src/user.cpp
+  src/userDatabase.cpp
+  src/settleFines.cpp
+  src/userFines.cpp
 )
 
 target_link_libraries(runAllTests gmock gtest gtest_main)

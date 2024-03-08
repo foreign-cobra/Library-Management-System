@@ -87,7 +87,17 @@ Next, traversing back to the main menu, we go to the user profile. From the user
  >     * How did this change help you write better code?
  > * Perform a new sprint plan like you did in Phase II.
  > * You should also make sure that your README file (and Project board) are up-to-date reflecting the current status of your project and the most recent class diagram. Previous versions of the README file should still be visible through your commit history.
- 
+
+SOLID PRINCIPLES USED:
+
+Date and Book being separate classes showcase the use of Single Responsibility Principle. Book should handle all the responsibility of holding the information about the book and displaying it. Date should create the format of how the date is being held and formatted managing everything to do with the creation of the date a book was borrowed to checking the current date. 
+
+Book and User having no direct connection showcases interface segregation principle. The User has to go through the library to access their books, they don’t have direct access to the book class because its the library that needs to work with the books. The books also shouldn’t have access to anything about the user because the user doesn’t matter to the book, nothing it does has any relation to the user.
+
+The library class having an add new book feature is an example of the Open/Closed Principle, as you can add to the number of books within the database, but you cannot edit the books that already exist within it. It was applied by creating the addNewBook function as this allows us to add to the existing library, but we cannot edit what currently exists in it. This change helps our code by ensuring what exists is kept clean, but still allows additional features to be implemented.
+
+ ![image](https://github.com/cs100/final-project-mbudd003-achav239-ctruo045-jpere470/assets/116530124/9d8b37e8-d0af-4f4e-8e19-5b8cce0ab055)
+
 > During the meeting with your reader you will discuss: 
  > * How effective your last sprint was (each member should talk about what they did)
  > * Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint

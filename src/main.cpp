@@ -227,6 +227,11 @@ int main() {
                                     newUser->borrowBook(bookFound);
                                     bookFound->setCurrentBorrower(newUser->getUsername());
                                     bookFound->setStatus(false);
+                                    Date currentBookDate;
+                                    bookFound->setBorrowedDate(currentBookDate.getCurrentDate());
+                                    cout << "\n\n --- Date Borrowed --- \n\n";
+                                    bookFound->getBorrowedDate().outputCurrentDate();
+                                    // bookFound->
                                     break;
                                     }
                                     else {
@@ -293,6 +298,8 @@ int main() {
             }
             case '3':
             {   
+                //Implement settle fines functionality
+                newUser->displayFines();
                 warningMessage = 0;
                 break;
             }

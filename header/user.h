@@ -19,6 +19,7 @@ class User {
         void displayBooksOwned() const;
         User();
         User(string user, string pass);
+        void displayFines();
     private:
         string username;
         string password;

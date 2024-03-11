@@ -12,7 +12,6 @@ using namespace std;
 int main() {
     Library database(11);                               // First, we must create our database                          
     userDatabase* userList = new userDatabase();        // Then, we create our user account list
-
     try {
     ifstream databaseFile;
     databaseFile.open("database.txt");                  // We must first open our database file
@@ -117,6 +116,7 @@ int main() {
         default:
         {
             // User wants to exit the program
+            delete userList;
             return 0;
         }
     }
@@ -361,6 +361,7 @@ int main() {
             default:
             {
             // User wants to exit the program
+            delete userList;
             return 0;
         }
     }
@@ -387,12 +388,13 @@ int main() {
     } while (userContinue);
 
     //Reset back to normal color. 
-    delete newUser; //testing
+    //delete newUser; testing
 
     cout << termcolor::reset;
 
     string EndOfProgram = "Program has been terminated";
     centerText(EndOfProgram, 160);
     cout << "\n\n\n\n\n\n\n\n\n\n\n";
+    delete userList;
     return 0;
 }

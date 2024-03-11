@@ -54,3 +54,4 @@ void User::displayFines() {
         // Do nothing if no fines. 
     }
 }
+}

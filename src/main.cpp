@@ -7,9 +7,7 @@
 #include "../header/book.h"
 #include "../header/userDatabase.h"
 
-
 using namespace std;
-
 
 int main() {
     Library database(11);                               // First, we must create our database                          
@@ -96,9 +94,9 @@ int main() {
         case '1':
         {
 
-        newUser = userList->createAccount();
-        userContinue = false;
-        break;
+            newUser = userList->createAccount();
+            userContinue = false;
+            break;
 
         }
         case '2':

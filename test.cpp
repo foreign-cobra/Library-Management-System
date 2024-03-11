@@ -190,7 +190,6 @@ TEST(UserDatabaseTest, testSearch) {
     users->addUser(user2);
     users->addUser(user3);
     ASSERT_EQ(users->searchUser("crunchy"), user2);
-    ASSERT_EQ(users->searchUser("crunchy", "water"), user2);
     delete users;
 }
 

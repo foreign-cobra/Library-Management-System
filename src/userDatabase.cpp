@@ -17,11 +17,10 @@ userDatabase::userDatabase() { // creates the user database
 }
 
 userDatabase::~userDatabase() {
-    // Iterate through the list and delete each User object
-    for (const auto& i : listOfUsers) {
-        delete i;
+    for (auto& user : listOfUsers) {
+        delete user;
     }
-
+    // Clear the list of users
     listOfUsers.clear();
 }
 

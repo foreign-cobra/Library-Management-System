@@ -67,12 +67,14 @@ TEST(UserTest, constructor1) {
     User* newUser = new User();
     EXPECT_EQ(newUser->getUsername(), "");
     EXPECT_EQ(newUser->getPassword(), "");
+    delete newUser;
 }
 
 TEST(UserTest, constructor2) {
     User* newUser = new User("colin", "dog");
     EXPECT_EQ(newUser->getUsername(), "colin");
     EXPECT_EQ(newUser->getPassword(), "dog");
+    delete newUser;
 }
 
 TEST(UserTest, changeUsername) {
@@ -80,6 +82,7 @@ TEST(UserTest, changeUsername) {
     newUser->setUsername("blueberry123");
     EXPECT_EQ(newUser->getUsername(), "blueberry123");
     EXPECT_EQ(newUser->getPassword(), "dog");
+    delete newUser;
 }
 
 TEST(UserTest, changePassword) {
@@ -87,6 +90,7 @@ TEST(UserTest, changePassword) {
     newUser->setPassword("hahaha499");
     EXPECT_EQ(newUser->getUsername(), "colin");
     EXPECT_EQ(newUser->getPassword(), "hahaha499");
+    delete newUser;
 }
 
 TEST(UserTest, displayBooks) {
@@ -99,6 +103,7 @@ TEST(UserTest, displayBooks) {
     newUser->displayBooksOwned();
     string output = testing::internal::GetCapturedStdout();
     ASSERT_EQ(output, "1. a\n\n2. e\n\n");
+    delete newUser;
 }
 
 // Insert and Search Tests
@@ -158,6 +163,7 @@ TEST(UserDatabaseTest, testAddUser) {
     users->addUser(user2);
     users->addUser(user3);
     ASSERT_EQ(users->getSize(), 3);
+    delete users;
 }
 
 TEST(UserDatabaseTest, testDisplayAcc) {
@@ -172,6 +178,7 @@ TEST(UserDatabaseTest, testDisplayAcc) {
     users->displayAllUsers();
     string output = testing::internal::GetCapturedStdout();
     ASSERT_EQ(output, "1. Username: colin\n\n2. Username: crunchy\n\n3. Username: banana\n\n");
+    delete users;
 }
 
 TEST(UserDatabaseTest, testSearch) {
@@ -183,18 +190,24 @@ TEST(UserDatabaseTest, testSearch) {
     users->addUser(user2);
     users->addUser(user3);
     ASSERT_EQ(users->searchUser("crunchy"), user2);
+    ASSERT_EQ(users->searchUser("crunchy", "water"), user2);
+    delete users;
 }
 
 TEST(UserDatabaseTest, adminFail) {
     userDatabase* users = new userDatabase();
     User* user1 = new User("Admin2", "hackingsystem");
     ASSERT_FALSE(users->isAdmin(user1));
+    delete user1;
+    delete users;
 }
 
 TEST(UserDatabaseTest, adminPass) {
     userDatabase* users = new userDatabase();
     User* user1 = new User("Admin1", "cs100");
     ASSERT_TRUE(users->isAdmin(user1));
+    delete user1;
+    delete users;
 }
 
 

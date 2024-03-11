@@ -1,5 +1,6 @@
 #include "../header/user.h"
 #include "../header/book.h"
+#include "../header/userFines.h"
 
 using namespace std;
 
@@ -38,5 +39,18 @@ void User::displayBooksOwned() const { // goes through each book and lists its t
     for (const auto& i : userBooks) {
         count++;
         cout << count << ". " << i->getBookTitle() << endl << endl;
+    }
+}
+
+void User::displayFines() {
+    int count = 1;
+    for(const auto& i : userBooks) {
+        UserFines currentFine;
+        double userFine = currentFine.calculateFine(i->getBorrowedDate());
+        if (userFine != 0) {
+            cout << count << ". " << i->getBookTitle() << ". Current Fine: " << userFine << endl;
+            count++;
+        }
+        // Do nothing if no fines. 
     }
 }

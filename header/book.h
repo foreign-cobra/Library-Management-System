@@ -24,7 +24,9 @@ struct Date {
     static Date getCurrentDate();
     static void setTestCurrentDate(int d, int m, int y);
     static void resetToCurrentDate();
+    void outputCurrentDate(); //Outputs the current date of the Date objecct
     int operator-(const Date& other) const; // Difference operator
+    Date operator=(const Date& other); // Assignment operator
 };
 
 
@@ -36,8 +38,8 @@ private:
     string bookAuthor;
     string bookSummary;
     string bookOwner;
-    Date borrowedDate;
     bool bookStatus; //true == open, false == taken
+    Date borrowedDate; //Contains the date that a user first borrowed the book
 
 public:
     Book();
@@ -53,7 +55,9 @@ public:
     bool overdue();
     void alterBorrowedDate(int d, int m, int y); //I made this for testing, we can get rid of it later if we want to
     void setCurrentBorrower(const string& bookOwner);
-    string getCurrentBorrower();
+    string getCurrentBorrower(); 
+    void setBorrowedDate(const Date& borrowedDate);
+    Date getBorrowedDate(const Date& borrowedDate);
 };
 
 #endif

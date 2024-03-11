@@ -31,6 +31,19 @@ int Date::operator-(const Date& other) const {
     return abs(thisDays - otherDays);
 }
 
+void Date::outputCurrentDate() {
+    cout << "Year: " << this->year << endl;
+    cout << "Month: " << this->month << endl;
+    cout << "Day: " << this->day << endl;
+}
+
+Date Date::operator=(const Date& other) {
+    this->year = other.year;
+    this->month = other.month;
+    this->day = other.month;
+    return *this;
+}
+
 Book::Book(){
     bookTitle = "";
     bookGenre = "";
@@ -71,9 +84,12 @@ string Book::getCurrentBorrower() {
     return this->bookOwner;
 }
 
-
 void Book::setCurrentBorrower(const string& bookOwner) {
     this->bookOwner = bookOwner;
+}
+
+void Book::setBorrowedDate(const Date& borrowedDate) {
+    this->borrowedDate = borrowedDate;
 }
 
 void Book::setStatus(bool status){

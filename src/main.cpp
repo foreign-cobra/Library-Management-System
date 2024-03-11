@@ -1,22 +1,14 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
-#include <cstdlib>
 #include "../header/helper.h"
 #include "../header/termcolor.hpp"
 #include "../header/library.h"
 #include "../header/book.h"
 #include "../header/userDatabase.h"
-#include "../header/userDatabase.h"
-
 
 using namespace std;
 
-
-int main(int /*argc*/, char ** /*argv*/) {
-    Library database(11);
-    userDatabase accounts(1);
-                                                        // First, we must create our database
 int main() {
     Library database(11);                               // First, we must create our database                          
     userDatabase* userList = new userDatabase();        // Then, we create our user account list
@@ -102,9 +94,9 @@ int main() {
         case '1':
         {
 
-        newUser = userList->createAccount();
-        userContinue = false;
-        break;
+            newUser = userList->createAccount();
+            userContinue = false;
+            break;
 
         }
         case '2':
@@ -209,8 +201,6 @@ int main() {
                         getline(cin, bookFind);
                         cout << "\n\n";
 
-                        bool bookFound = database.bookSearch(bookFind);
-                        if (bookFound) {
                         Book* bookFound = database.bookSearch(bookFind);
 
                         if (bookFound != nullptr) {

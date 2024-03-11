@@ -38,9 +38,9 @@ void userDatabase::addUser(User*& newUser) { // first searches if the username i
     size++;
 }
 
-User* userDatabase::searchUser(const string& username, const string& password) { // iterates through the entire database list until it finds the matching username
+User* userDatabase::searchUser(const string& username) { // iterates through the entire database list until it finds the matching username
     for (User* user: listOfUsers) {
-        if ((user->getUsername() == username) && (user->getPassword() == password)) {
+        if ((user->getUsername() == username)) {
             return user;
         }
     }
@@ -66,6 +66,10 @@ void userDatabase::displayAllUsers() const {
 
 User* userDatabase::createAccount() {
     User* newUser = loginLayout();
+
+    if (searchUser(newUser->getUsername()) != nullptr) {
+        return nullptr;
+    }
 
     try {
         ofstream accountFile;
@@ -123,7 +127,7 @@ User* userDatabase::signIn() {
             while(getline(accountFile, newUsername, ',') && 
             getline(accountFile, newPassword)) {
                 if((username == newUsername) && (password == newPassword)) {
-                    return searchUser(newUsername, newPassword);
+                    return searchUser(newUsername);
                 }
             }
             accountFile.close();

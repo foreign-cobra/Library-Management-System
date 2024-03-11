@@ -37,8 +37,13 @@ void User::borrowBook(Book* book) { // borrows the book and adds the book to the
 void User::displayBooksOwned() const { // goes through each book and lists its title
     int count = 0;
     for (const auto& i : userBooks) {
-        count++;
-        cout << count << ". " << i->getBookTitle() << endl << endl;
+        if (getUsername() == i->getCurrentBorrower()) {
+            count++;
+            cout << count << ". " << i->getBookTitle() << endl << endl;
+        }
+    }
+    if (count == 0) {
+        cout << "You are currently not borrowing any books" << endl << endl;
     }
 }
 
@@ -53,5 +58,4 @@ void User::displayFines() {
         }
         // Do nothing if no fines. 
     }
-}
 }

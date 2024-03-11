@@ -93,9 +93,16 @@ int main() {
     switch(userInput) {
         case '1':
         {
-
+            // User wants to create a new account
             newUser = userList->createAccount();
-            userContinue = false;
+            if (newUser != nullptr) {
+                userContinue = false;
+                break;
+            }
+            cout << termcolor::red;
+            string createAccountError = "ERROR: Username has been taken!";
+            centerText(createAccountError, 160);
+            cout << "\n\n\n";
             break;
 
         }

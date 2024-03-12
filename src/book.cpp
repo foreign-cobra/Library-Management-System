@@ -1,5 +1,5 @@
 #include "../header/book.h"
-
+#include <iostream>
 using namespace std;
 
 Date Date::testCurrentDate = Date(); // Initialize with default constructor
@@ -40,7 +40,7 @@ void Date::outputCurrentDate() {
 Date Date::operator=(const Date& other) {
     this->year = other.year;
     this->month = other.month;
-    this->day = other.month;
+    this->day = other.day;
     return *this;
 }
 

@@ -12,7 +12,7 @@ UserFines::UserFines() {}
 
 // Calculates fine based on the borrowed date
 double UserFines::calculateFine(const Date& borrowedDate) {
-    Date currentDate = Date::getCurrentDate();
+    Date currentDate = Date::getCurrentDate(); 
     int daysDifference = currentDate - borrowedDate;
     int daysOverdue = daysDifference - DUE_DAYS;
 

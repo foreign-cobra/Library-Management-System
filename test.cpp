@@ -99,6 +99,8 @@ TEST(UserTest, displayBooks) {
     Book* book2 = new Book ("e", "f", "g", "h");
     newUser->borrowBook(book1);
     newUser->borrowBook(book2);
+    book1->setCurrentBorrower(newUser->getUsername());
+    book2->setCurrentBorrower(newUser->getUsername());
     testing::internal::CaptureStdout();
     newUser->displayBooksOwned();
     string output = testing::internal::GetCapturedStdout();

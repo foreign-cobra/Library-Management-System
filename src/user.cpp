@@ -45,7 +45,7 @@ void User::displayBooksOwned() const { // goes through each book and lists its t
     }
     if (count == 0) {
         cout << "You are currently not borrowing any books" << endl << endl;
-    }
+     }
 }
 
 void User::displayFines() {

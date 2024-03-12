@@ -5,6 +5,56 @@
 #include "header/library.h"
 #include "header/userDatabase.h"
 #include "header/userFines.h"
+//total Fine tests to make sure if they have multiple book Fines they pay both instead of only 1
+TEST(UserBooksFine, ReturnTotFineFor2LateBooks) {
+    User* newUser = new User();
+    Book* book1 = new Book("Title", "Genre", "Author", "Summary");
+    Book* book2 = new Book("Harry", "Comedy", "Alex", "NoSummaryXD");
+    Date::setTestCurrentDate(20 ,1, 2024); // Set "current" date for test
+    Date borrowedDate(1, 1, 2024); // Borrowing date
+    book1->setBorrowedDate(borrowedDate);
+    book2->setBorrowedDate(borrowedDate);
+    newUser->borrowBook(book1);
+    newUser->borrowBook(book2);
+    EXPECT_DOUBLE_EQ(7.5,newUser->getTotalFine());
+    delete newUser;
+    delete book1;
+    delete book2;
+}
+
+TEST(UserBooksFine, ReturnTotFineForOneLateAndOtherNotBook) {
+    User* newUser = new User();
+    Book* book3 = new Book("Title", "Genre", "Author", "Summary");
+    Book* book4 = new Book("AL", "Ge", "Au", "Su");
+    Date::setTestCurrentDate(20 ,1, 2024); // Set "current" date for test
+    Date borrowedDate3(10,1,2024); //Borrowed date for non-late book
+    Date borrowedDate4(1, 1, 2024); // Borrowing date for Late book
+    book3->setBorrowedDate(borrowedDate3);
+    book4->setBorrowedDate(borrowedDate4);
+    newUser->borrowBook(book3);
+    newUser->borrowBook(book4);
+    EXPECT_DOUBLE_EQ(3.75,newUser->getTotalFine());
+    delete newUser;
+    delete book3;
+    delete book4;
+}
+
+TEST(UserBooksFine, ReturnTotFineZeroNoLateBooks) {
+    User* newUser = new User();
+    Book* book5 = new Book("Title", "Genre", "Author", "Summary");
+    Book* book6 = new Book("AL", "Ge", "Au", "Su");
+    Date::setTestCurrentDate(20 ,1, 2024); // Set "current" date for test
+    Date borrowedDate5(10,1,2024); //Borrowed date for non-late book
+    Date borrowedDate6(6, 1, 2024); // Borrowing date for Late book
+    book5->setBorrowedDate(borrowedDate5);
+    book6->setBorrowedDate(borrowedDate6);
+    newUser->borrowBook(book5);
+    newUser->borrowBook(book6);
+    EXPECT_DOUBLE_EQ(0.0,newUser->getTotalFine());
+    delete newUser;
+    delete book5;
+    delete book6;
+}
 
 TEST(UserFinesTest, ReturnBeforeDueDate) {
     Date::setTestCurrentDate(10, 1, 2022); // Set "current" date for test
@@ -25,6 +75,23 @@ TEST(UserFinesTest, ReturnOnDueDate) {
 TEST(UserFinesTest, ReturnAfterDueDate) {
     Date::setTestCurrentDate(20, 1, 2022); // Set "current" date for test greater than 14 days from borrowed date
     Date borrowedDate(1, 1, 2022); // Borrowing date
+    double fine = UserFines::calculateFine(borrowedDate);
+    // Assuming the fine is calculated based on the number of days overdue
+    EXPECT_GT(fine, 0.0);
+}
+
+TEST(UserFinesTest, ReturnLateWithCorrectFine) {
+    Date::setTestCurrentDate(20, 1, 2022); // Set "current" date for test greater than 14 days from borrowed date
+    Date borrowedDate(1, 1, 2022); // Borrowing date
+    double fine = UserFines::calculateFine(borrowedDate);
+    // Assuming the fine is calculated based on the number of days overdue
+    EXPECT_EQ(3.75, fine);
+}
+
+//Test verifies that getCurrentDate gets actual Date and we verify it by making sure it even created a fine
+TEST(UserFinesTest, returnFinesSinceLate) {
+    Date borrowedDate(1, 2, 2024); // Borrowing date
+    //currentDate should always be greater than 14 days since current date already greater than 14 days
     double fine = UserFines::calculateFine(borrowedDate);
     // Assuming the fine is calculated based on the number of days overdue
     EXPECT_GT(fine, 0.0);

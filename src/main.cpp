@@ -402,6 +402,7 @@ int main() {
     string EndOfProgram = "Program has been terminated";
     centerText(EndOfProgram, 160);
     cout << "\n\n\n\n\n\n\n\n\n\n\n";
+
     delete userList;
     return 0;
 }

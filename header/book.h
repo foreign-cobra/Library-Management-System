@@ -44,6 +44,7 @@ private:
 public:
     Book();
     Book(const string &bookTitle, const string &bookGenre, const string &bookAuthor, const string &bookSummary);
+    ~Book();
     string getBookTitle();
     string getBookGenre();
     string getBookAuthor();

@@ -20,7 +20,6 @@ class User {
         User();
         User(string user, string pass);
         void displayFines();
-        ~User();
     private:
         string username;
         string password;

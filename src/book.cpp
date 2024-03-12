@@ -60,6 +60,11 @@ Book::Book(const string &bookTitle_, const string &bookGenre_, const string &boo
     bookStatus = true;
     borrowedDate = Date::getCurrentDate(); //TEMPORARY FOR TESTING IF DATE SYSTEM IS WORKING PROPERLY
 }
+Book::~Book() {
+    // No dynamically allocated resources to clean up in this case,
+    // so the destructor body remains empty.
+    // Exists to make sure program doesn't try to run a book destructor when it doesnt need to.
+}
 string Book::getBookTitle(){
     return bookTitle;
 }

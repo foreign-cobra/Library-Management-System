@@ -104,6 +104,8 @@ TEST(UserTest, displayBooks) {
     string output = testing::internal::GetCapturedStdout();
     ASSERT_EQ(output, "1. a\n\n2. e\n\n");
     delete newUser;
+    delete book1;
+    delete book2;
 }
 
 // Insert and Search Tests

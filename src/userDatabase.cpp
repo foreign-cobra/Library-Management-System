@@ -19,6 +19,7 @@ userDatabase::userDatabase() { // creates the user database
 userDatabase::~userDatabase() {
     for (auto& user : listOfUsers) {
         delete user;
+        user = nullptr;
     }
     // Clear the list of users
     listOfUsers.clear();

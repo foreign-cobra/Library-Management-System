@@ -10,13 +10,7 @@ User::User() : username(""), password("") {
 User::User(string user, string pass) : username(user), password(pass) {
 }
 
-User::~User(){
-    for (auto bookPtr : userBooks) {
-        delete bookPtr;
-    }
-    // Clear the list after deleting all the pointers
-    userBooks.clear();
-}
+
 string User::getUsername() const {
     return username;
 }

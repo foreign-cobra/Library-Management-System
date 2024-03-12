@@ -152,7 +152,7 @@ int main() {
                     {
                         // TODO: Output Account Information
                         cout << "Username: " << newUser->getUsername() << endl;
-                        cout << "Password: " << newUser->getUsername() << endl;
+                        cout << "Password: " << newUser->getPassword() << endl;
                         cout << "\n";
                         break;
                     }

@@ -60,3 +60,17 @@ void User::displayFines() {
         // Do nothing if no fines. 
     }
 }
+
+double User::getTotalFine() {
+    double totUserFines = 0.0;
+    for(const auto& i : userBooks) {
+        UserFines tempFine;
+        double userFine = tempFine.calculateFine(i->getBorrowedDate());
+        if (userFine != 0) {
+            totUserFines += userFine;
+        }
+        // Do nothing if no fines. 
+    }
+    return totUserFines;
+}
+

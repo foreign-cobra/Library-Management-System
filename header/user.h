@@ -20,6 +20,7 @@ class User {
         User();
         User(string user, string pass);
         void displayFines();
+        double getTotalFine();
     private:
         string username;
         string password;

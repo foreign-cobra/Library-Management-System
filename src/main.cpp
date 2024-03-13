@@ -6,6 +6,7 @@
 #include "../header/library.h"
 #include "../header/book.h"
 #include "../header/userDatabase.h"
+#include "../header/settleFines.h"
 
 using namespace std;
 
@@ -165,6 +166,7 @@ int main() {
                     case '3':
                     {
                         // TODO: View a list of book fines
+                        newUser->displayFines();
                         break;
                     }
 
@@ -303,8 +305,24 @@ int main() {
             }
             case '3':
             {   
-                //Implement settle fines functionality
+             //Implement settle fines functionality
                 newUser->displayFines();
+
+                //ask user if they want to pay fines
+                cout << "Do you want to settle your fines? (Y/N): ";
+                char payFines;
+                cin >> payFines;
+
+                if (payFines == 'Y' || payFines == 'y'){
+                    PaymentProcessor payment_Processor;
+
+                    double finesToPay = newUser -> getTotalFine();
+                    payment_Processor.settleFine(finesToPay);
+                }
+                else {
+                    cout << "Fines not settled. Returning to main menu.\n";
+                }
+                
                 warningMessage = 0;
                 break;
             }

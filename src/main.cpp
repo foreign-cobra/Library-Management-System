@@ -332,7 +332,7 @@ int main() {
                             getline(cin, newBookSummary);
                             cout << "\n";
                             bookTest = database.bookSearch(newBookTitle);
-                        } while((newBookTitle.size() < 1) || (newBookAuthor.size() < 1) || (newBookGenre.size() < 1) || (newBookSummary.size() < 5) || (bookTest != nullptr));
+                        } while((newBookTitle.size() < 1) || (newBookAuthor.size() < 1) || (newBookGenre.size() < 1) || (newBookSummary.size() < 100) || (bookTest != nullptr));
 
                         // Now that we have what we need, we need to write to the text file and insert it in the library. 
 
@@ -355,9 +355,9 @@ int main() {
                         }
                         }
 
-    catch(const exception& error) {
-        cout << error.what() << endl;
-    }
+                        catch(const exception& error) {
+                        cout << error.what() << endl;
+                        }
 
 
                         break;

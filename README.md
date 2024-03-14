@@ -171,6 +171,11 @@ Our program heavily relied on unit testing to make this application work correct
 tests for every function in the application that can be tested reliably. Other functions that were used to output to the screen were tested 
 rigorously through trial-and-error. For the CS 100 demo, we attached screenshots of the test.cpp file below. 
 
-// Insert screenshots of test.cpp. 
-
+![alt text](ScreenShots/image-10.png)
+![alt text](ScreenShots/image-11.png)
+![alt text](ScreenShots/image-16.png)
+![alt text](ScreenShots/image-12.png)
+![alt text](ScreenShots/image-13.png)
+![alt text](ScreenShots/image-14.png)
+![alt text](ScreenShots/image-15.png)
  

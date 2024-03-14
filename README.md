@@ -7,35 +7,39 @@ Alexander Chavez(https://github.com/AlexC111013),
 Matthew Budding(https://github.com/MatthewBudding)
 
 ## Project Description
-This LMS project is especially interesting to all four group members as it has a fairly straightforward design philosophy with enough complexity to test our knowledge of important C++ concepts, algorithms, and data structures. This project will use C++ as its main programming language, as well as common data structures in object-oriented programming such as linked lists, hashtables, 
-and input/output writing/reading functionalities. 
+This LMS project is especially interesting to all four group members as it has a fairly straightforward design philosophy with enough complexity to test our knowledge of important C++ concepts, algorithms, and data structures. This project will use C++ as its main programming language, as well as common data structures in object-oriented programming such as hashtables, the list data structure, and input/output writing/reading functionalities. 
 
 This program will be focused on user interaction, so the main input the program receives will be the user's demands. These demands include, but are not limited to:
 - Signing up for an account to use the LMS
-- "Borrowing" a book/list of books registered within the LMS
+- "Borrowing" a book registered within the LMS
 - Entering records of new books for future users to borrow
 - "Returning" a borrowed book
 - The ability to "look up" a book within the LMS database to borrow
 - Settling fines for overdue books
-- Retrieving details of a specified book of their choosing. This includes the book's author, ID, publication date, summary, etc...
-- Reading pages of their borrowed book within the LMS
+- Retrieving details of a specified book of their choosing. This includes the book's author, genre, summary, etc...
+- Reading an extensive summary of the book they desire
 
 While many of the LMS' features are already listed above, they are explained in a bit more detail here. 
 
 - A hash function will be used to generate a unique ID for the books within the database. Users will be able to "look up" a specified book using this ID. 
 
-- A linked list will be used to generate a "reading list" for every user with an account. There will be a limit to how many books a user can borrow. Each "reading list" will be tied to a different account. 
+- A list data structure will be used to generate a "reading list" for every user with an account. There will be a limit to how many books a user can borrow. Each "reading list" will be tied to a different account. 
 
 - Books are exclusive. Books that are borrowed by one user will not be available to others. 
 
-- New books added to the LMS by a user will be added to the hashtable. An ID will be generated for it, but users will have to input their own information for the book specifications. 
+- New books added to the LMS by a user will be added to the hashtable. An ID will be generated for it, but users will have to input their own information for the book specifications. This information is the book's title. 
+
+- A list of users will be stored in a user database. They will have access to book borrowing, returning, settling fines, and of course, 
+reading an extensive summary of the book they borrowed. 
+
+- There is an exclusive admin username and password. The admin will be able to ouput a list of every current user, and be able to add 
+new books to the database as well. No other users will have access to these features. 
 
 - As always, input validation will be implemented in any and all inputs.
 
 
  
 ## User Interface Specification
- > Include a navigation diagram for your screens and the layout of each of those screens as desribed below. For all the layouts/diagrams, you can use any tool such as PowerPoint or a drawing program. (Specification requirement is adapted from [this template](https://redirect.cs.umbc.edu/~mgrass2/cmsc345/Template_UI.doc))
 
 ### Navigation Diagram
 
@@ -72,13 +76,6 @@ Book and User having no direct connection showcases interface segregation princi
 The library class having an add new book feature is an example of the Open/Closed Principle, as you can add to the number of books within the database, but you cannot edit the books that already exist within it. It was applied by creating the addNewBook function as this allows us to add to the existing library, but we cannot edit what currently exists in it. This change helps our code by ensuring what exists is kept clean, but still allows additional features to be implemented.
 
  ![image](https://github.com/cs100/final-project-mbudd003-achav239-ctruo045-jpere470/assets/116530124/9d8b37e8-d0af-4f4e-8e19-5b8cce0ab055)
-
-> During the meeting with your reader you will discuss: 
- > * How effective your last sprint was (each member should talk about what they did)
- > * Any tasks that did not get completed last sprint, and how you took them into consideration for this sprint
- > * Any bugs you've identified and created issues for during the sprint. Do you plan on fixing them in the next sprint or are they lower priority?
- > * What tasks you are planning for this next sprint.
-
  
  > ## Final deliverable
  > All group members will give a demo to the reader during lab time. ou should schedule your demo on Calendly with the same reader who took your second scrum meeting. The reader will check the demo and the project GitHub repository and ask a few questions to all the team members. 
@@ -88,9 +85,77 @@ The library class having an add new book feature is an example of the Open/Close
  > * Make sure your README file and Project board are up-to-date reflecting the current status of your project (e.g. any changes that you have made during the project such as changes to your class diagram). Previous versions should still be visible through your commit history. 
  
  ## Screenshots
- > Screenshots of the input/output after running your application
+
+Our application requires constant input from the user. It has a "back-and-forth" exchange in order for the program to run smoothly. 
+Here are a couple screenshots of the various actions a user can do while running the program.
+
+Creating an Account / Signing In
+
+Options displayed after selecting "User Profile"
+
+Outputting a user's list of borrowed books
+
+Searching for a book successfully
+
+Returning a book successfully
+
+Displaying the list of users as an admin
+
+Adding a book as an admin
+
+Terminating the program
+
+![alt text](image.png)
+
  ## Installation/Usage
- > Instructions on installing and running your application
+
+This application is fairly easy to use as it is compatible with many up-to-date operating systems. First, you must hop onto VS Code and 
+run the command this command to clone the repository.
+
+ * git clone --recursive https://github.com/cs100/final-project-mbudd003-achav239-ctruo045-jpere470.git
+
+After you have done so, run the following commands to generate the executables and appropriate MakeFile.
+
+ * cmake .
+ * make
+
+Before you run any executables, please drag the "database.txt" and "accounts.txt" files in the repository to the "bin" folder that was 
+just created if they are not already there. This is necessary as the files won't be read if you run the executable while they are not in 
+the "bin" folder. Once you have dragged both text files to the folder, navigate to the bin folder and run the executable for the program
+by typing in the following commands. 
+
+ * cd bin
+ * ./runProgram
+
+Alternatively, you can run the program by using the following command.
+
+* ./bin/runProgram
+
+But that will cause the program to run incorrectly, as the files will not be read. 
+
+WARNING: Any alteration of the database and account text files will inevitably result in program bugs and cause the application to not 
+run correctly. If you must make changes to these files, consider doing so as an admin through actual use of the application. The information
+to log in as an admin is displayed below. 
+
+* Username: Admin1
+* Password: cs100
+
+To use the application, you must interact with it by typing a number on the keypad of your keyboard and pressing the Enter key to confirm your action. If you change your mind, you may use your backspace key to delete any unwanted key presses. The roman numerals detailed on the 
+sides of the options on the application indicate which key you need to press for which action. Be advised, entering a string of characters
+and then pressing enter will result in the application outputting many screens at once, which may harm your user experience. 
+
+In some cases, you are required to enter a string of characters, including when you wish to search for a book, or adding a book to the 
+database (this requires admin privileges). 
+
+Please refer to the "Screenshots" section above this one to get a good grasp of how the application operates and to understand the layout of
+the screens. 
+
  ## Testing
- > How was your project tested/validated? If you used CI, you should have a "build passing" badge in this README.
+
+Our program heavily relied on unit testing to make this application work correctly. We have an extensive test.cpp file which includes
+tests for every function in the application that can be tested reliably. Other functions that were used to output to the screen were tested 
+rigorously through trial-and-error. For the CS 100 demo, we attached screenshots of the test.cpp file below. 
+
+// Insert screenshots of test.cpp. 
+
  

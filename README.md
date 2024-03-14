@@ -91,17 +91,32 @@ Here are a couple screenshots of the various actions a user can do while running
 
 Creating an Account / Signing In
 
+![alt text](image-1.png)
+
 Options displayed after selecting "User Profile"
+
+![alt text](image-2.png)
 
 Outputting a user's list of borrowed books
 
+![alt text](image-4.png)
+
 Searching for a book successfully
 
-Returning a book successfully
+![alt text](image-3.png)
+
+Searching/Returning a book unsuccessfully
+
+![alt text](image-7.png)
+![alt text](image-8.png)
 
 Displaying the list of users as an admin
 
+![alt text](image-5.png)
+
 Adding a book as an admin
+
+![alt text](image-6.png)
 
 Terminating the program
 

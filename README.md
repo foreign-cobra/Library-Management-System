@@ -95,7 +95,7 @@ Creating an Account / Signing In
 
 Options displayed after selecting "User Profile"
 
-![alt text](ScreenShots/image-2.png)
+![alt text](ScreenShots/image-9.png)
 
 Outputting a user's list of borrowed books
 

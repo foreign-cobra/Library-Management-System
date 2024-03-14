@@ -21,7 +21,7 @@ This program will be focused on user interaction, so the main input the program 
 
 While many of the LMS' features are already listed above, they are explained in a bit more detail here. 
 
-- A hash function will be used to generate a unique ID for the books within the database. Users will be able to "look up" a specified book using this ID. 
+- A hash function will be used to generate a unique ID for the books within the database. Users will be able to "look up" a specified book using the book title. 
 
 - A list data structure will be used to generate a "reading list" for every user with an account. There will be a limit to how many books a user can borrow. Each "reading list" will be tied to a different account. 
 

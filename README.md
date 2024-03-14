@@ -77,7 +77,8 @@ The library class having an add new book feature is an example of the Open/Close
 
  ![image](https://github.com/cs100/final-project-mbudd003-achav239-ctruo045-jpere470/assets/116530124/9d8b37e8-d0af-4f4e-8e19-5b8cce0ab055)
  
-POST PHASE 3 UML DIAGRAM UPDATE
+POST PHASE 3 UML DIAGRAM UPDATE:
+
 Seperated the display functions into their own class as suggested in Milestone 3
 ![image](https://github.com/cs100/final-project-mbudd003-achav239-ctruo045-jpere470/assets/116530124/84f3a0ec-a674-4194-aef2-66b2c11aca55)
 

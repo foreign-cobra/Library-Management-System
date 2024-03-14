@@ -264,7 +264,7 @@ int main() {
                                         bookFound->setStatus(true);
                                         bookFound->setCurrentBorrower("");
                                     }
-                                    //newUser->returnBook(bookFound); return book needs to be a function withini the user class. 
+                                    //newUser->returnBook(bookFound); return book needs to be a function within the user class. 
                                     break;
                                 }
                                 default:
@@ -287,6 +287,79 @@ int main() {
                     case '2':
                     {   
                         // TODO: Call Add Book Function
+                        // No add book function, just prompt the user to input new book information
+                        // ONLY WORKS IF THE USER IS AN ADMIN!!
+                        if (newUser->getUsername() != "Admin1") {
+                            string adminError = "You do not have permission to do that!";
+                            cout << termcolor::red << "\n\n";
+                            centerText(adminError, 160);
+                            cout << termcolor::reset << "\n\n";
+                            break;
+                        }
+
+                        // If the user is an admin, we prompt them to input the book information;
+
+                        string prompt1 = "Please enter your new book's information!";
+                        string prompt2 = "Book Title: ";
+                        string prompt3 = "Book Author: ";
+                        string prompt4 = "Book Genre: ";
+                        string prompt5 = "Book Summary: ";
+                        string warningPrompt = "None of your inputs can be empty strings, and your summary must be at least 100 characters!";
+                        string newBookTitle;
+                        string newBookAuthor;
+                        string newBookGenre;
+                        string newBookSummary;
+                        Book* bookTest = nullptr;
+
+                        do {
+                            cout << termcolor::yellow;
+                            cout << "\n\n";
+                            centerText(prompt1, 160);
+                            cout << "\n\n";
+                            centerText(warningPrompt, 160);
+                            cout << "\n\n";
+                            centerText(prompt2, 160);
+                            cin.ignore();
+                            getline(cin, newBookTitle);
+                            cout << endl;
+                            centerText(prompt3, 160);
+                            getline(cin, newBookAuthor);
+                            cout << endl;
+                            centerText(prompt4, 160);
+                            getline(cin, newBookGenre);
+                            cout << endl;
+                            centerText(prompt5, 160);
+                            getline(cin, newBookSummary);
+                            cout << "\n";
+                            bookTest = database.bookSearch(newBookTitle);
+                        } while((newBookTitle.size() < 1) || (newBookAuthor.size() < 1) || (newBookGenre.size() < 1) || (newBookSummary.size() < 100) || (bookTest != nullptr));
+
+                        // Now that we have what we need, we need to write to the text file and insert it in the library. 
+
+                        try {
+                            ofstream databaseFile;
+                            databaseFile.open("database.txt", ios::app);                  // We must first open our database file
+
+                            if (databaseFile.is_open()) {
+                                databaseFile << newBookTitle << "|" << newBookAuthor << "|" << newBookGenre << "|" << newBookSummary << "\n";
+
+                                database.insert(newBookTitle, newBookAuthor, newBookGenre, newBookSummary);
+                            
+                            databaseFile.close();
+                            bookTest = nullptr;
+                        }
+
+                        else {
+                            databaseFile.close();
+                            throw runtime_error("ERROR: Couldn't open database file :(");        //Run time error in case file does not open
+                        }
+                        }
+
+                        catch(const exception& error) {
+                        cout << error.what() << endl;
+                        }
+
+
                         break;
                     }
 

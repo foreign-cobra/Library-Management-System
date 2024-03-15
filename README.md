@@ -7,6 +7,14 @@ Alexander Chavez(https://github.com/AlexC111013),
 Matthew Budding(https://github.com/MatthewBudding)
 
 ## Project Description
+
+DISCLAIMER: This application utilizes termcolor, a free C++ library which adds flavorful color to the application to enhance the user
+experience. 
+
+To learn more, the repository is listed below. 
+
+* https://github.com/ikalnytskyi/termcolor.git
+
 This LMS project is especially interesting to all four group members as it has a fairly straightforward design philosophy with enough complexity to test our knowledge of important C++ concepts, algorithms, and data structures. This project will use C++ as its main programming language, as well as common data structures in object-oriented programming such as hashtables, the list data structure, and input/output writing/reading functionalities. 
 
 This program will be focused on user interaction, so the main input the program receives will be the user's demands. These demands include, but are not limited to:
